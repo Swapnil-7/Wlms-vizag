@@ -1,0 +1,188 @@
+<div class="container mx-auto">
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex-auto p-2 sm:p-10">
+            <!-- Title -->
+            <div class="title text-center mb-4">
+                <span class="heading text-3xl font-bold">MQTT</span>
+            </div>
+            <hr class="border-gray-300 my-4">
+            
+            <!-- MQTT Form -->
+            <form [formGroup]="mqttForm" class="max-w-xl">
+                <div class="grid grid-cols-1 gap-2">
+                    <!-- Enable MQTT -->
+                    <div class="flex items-center">
+                        <label for="enable_mqtt" class="block text-gray-700 text-base font-semibold w-1/2">Enable MQTT :</label>
+                        <select class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600" formControlName="enable_mqtt">
+                            <option value=0>0: OFF</option>
+                            <option value=1>1: Using WiFi</option>
+                            <option value=2>2: Using Cellular</option>
+                        </select>
+                    </div>
+
+                    <!-- MQTT Broker -->
+                    <div class="flex items-center">
+                        <label for="broker" class="block text-gray-700 text-base font-semibold w-1/2">MQTT Broker :</label>
+                        <input
+                            type="text"
+                            id="broker"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="broker"
+                        />
+                    </div>
+
+                    <!-- MQTT Port -->
+                    <div class="flex items-center">
+                        <label for="port" class="block text-gray-700 text-base font-semibold w-1/2">MQTT Port :</label>
+                        <input
+                            type="text"
+                            id="port"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="port"
+                        />
+                    </div>
+
+                    <!-- MQTT User -->
+                    <div class="flex items-center">
+                        <label for="user" class="block text-gray-700 text-base font-semibold w-1/2">MQTT User :</label>
+                        <input
+                            type="text"
+                            id="user"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="user"
+                        />
+                    </div>
+
+                    <!-- MQTT Password -->
+                    <div class="flex items-center">
+                        <label for="pwd" class="block text-gray-700 text-base font-semibold w-1/2">MQTT Password :</label>
+                        <input
+                            type="password"
+                            id="pwd"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="pwd"
+                        />
+                    </div>
+
+                    <!-- MQTT Client ID -->
+                    <div class="flex items-center">
+                        <label for="cid" class="block text-gray-700 text-base font-semibold w-1/2">MQTT Client ID :</label>
+                        <input
+                            type="text"
+                            id="cid"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="cid"
+                        />
+                    </div>
+
+                    <!-- MQTT QoS -->
+                    <div class="flex items-center">
+                        <label for="qos" class="block text-gray-700 text-base font-semibold w-1/2">MQTT QoS :</label>
+                        <select class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600" formControlName="qos">
+                            <option value=0>0: At most once</option>
+                            <option value=1>1: At least once</option>
+                            <option value=2>2: Exactly once</option>
+                        </select>
+                    </div>
+
+                    <!-- MQTT Retain -->
+                    <div class="flex items-center">
+                        <label class="block text-gray-700 text-base font-semibold w-1/3">MQTT Retain :</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" class="form-radio" formControlName="retain" [value]=1>
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" class="form-radio" formControlName="retain" [value]=0>
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- MQTT Keep Alive -->
+                    <div class="flex items-center">
+                        <label for="keep_alive" class="block text-gray-700 text-base font-semibold w-1/2">MQTT Keep Alive :</label>
+                        <input
+                            type="number"
+                            id="keep_alive"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="keep_alive"
+                        />
+                    </div>
+
+                    <!-- Secure Connection -->
+                    <div class="flex items-center">
+                        <label for="userSecureConnection" class="block text-gray-700 text-base font-semibold w-1/2">Use Secure Connection :</label>
+                        <select class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600" formControlName="userSecureConnection">
+                            <option value=0>0: No Auth</option>
+                            <option value=1>1: Server Only</option>
+                            <option value=2>2: Server & Client</option>
+                            <option value=3>3: Client Only</option>
+                        </select>
+                    </div>
+
+                    <!-- Certificates -->
+                    <div class=" flex items-center">
+                        <label for="certificates" class="block text-gray-700 text-base font-semibold w-1/3">Certificates (PEM) :</label>
+                        <div class="space-y-2 w-1/2">
+                            <input type="file" id="file1" title="CA File" class="w-full text-gray-600" (change)="onFileChange($event, 'ca')">
+                            <button class="w-full bg-teal-500 text-white py-2 rounded" (click)="downloadFile('ca')">Download CA</button>
+                            
+                            <input type="file" id="file2" title="Crt File" class="w-full text-gray-600" (change)="onFileChange($event, 'crt')">
+                            <button class="w-full bg-teal-500 text-white py-2 rounded" (click)="downloadFile('crt')">Download CRT</button>
+                            
+                            <input type="file" id="file3" title="Key File" class="w-full text-gray-600" (change)="onFileChange($event, 'key')">
+                            <button class="w-full bg-teal-500 text-white py-2 rounded" (click)="downloadFile('key')">Download Key</button>
+                        </div>
+                    </div>
+
+                    <!-- Data Publish Topic -->
+                    <div class="flex items-center">
+                        <label for="pubtopic" class="block text-gray-700 text-base font-semibold w-1/2">Data Publish Topic :</label>
+                        <input
+                            type="text"
+                            id="pubtopic"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="pubtopic"
+                        />
+                    </div>
+
+                    <!-- Attribute Publish Topic -->
+                    <div class="flex items-center">
+                        <label for="attrpubtopic" class="block text-gray-700 text-base font-semibold w-1/2">Attribute Publish Topic :</label>
+                        <input
+                            type="text"
+                            id="attrpubtopic"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="attrpubtopic"
+                        />
+                    </div>
+
+                    <!-- Subscribe Topic -->
+                    <div class="flex items-center">
+                        <label for="subtopic" class="block text-gray-700 text-base font-semibold w-1/2">Subscribe Topic :</label>
+                        <input
+                            type="text"
+                            id="subtopic"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="subtopic"
+                        />
+                    </div>
+                </div>
+
+               <!-- Submit Button -->
+               <div class="flex items-center justify-center mt-3">
+                <div class="w-1/4"></div> <!-- Empty space for alignment -->
+                <input
+                    type="submit"
+                    class="submitbtn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-10 rounded-xl focus:outline-none focus:shadow-outline"
+                    value="Submit" 
+                    (click)="saveMqtt()"
+                   
+                />
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

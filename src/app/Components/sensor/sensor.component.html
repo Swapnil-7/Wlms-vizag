@@ -1,0 +1,164 @@
+<div class="container mx-auto">
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex-auto p-2 sm:p-10">
+            <!-- Title -->
+            <div class="title text-center mb-4">
+                <span class="heading text-3xl font-bold">Sensor Calibration</span>
+                <br>
+                <!-- <span class="subheading text-lg text-gray-600">Device Configuration Values</span> -->
+            </div>
+            <hr class="border-gray-300 my-4">
+
+
+            
+            <!-- Form -->
+            <form [formGroup]="sensorForm" class="max-w-2xl">
+
+                <div class="grid grid-cols-1 gap-5">
+
+
+                    <div class="relative flex items-center">
+                        <label for="tankSize" class="block text-gray-700 text-base font-semibold w-1/2">Tank Size :</label>
+                        <input
+                            type="number"
+                            id="tankSize"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600 ml-3"
+                            formControlName="tankSize"
+                            [ngClass]="{'input-error': sensorForm.get('otTH')?.invalid && sensorForm.get('tankSize')?.touched}"> mm
+                        <div *ngIf="sensorForm.get('tankSize')?.invalid && sensorForm.get('tankSize')?.touched" class="absolute left-60 top-full text-red-500 text-sm font-semibold">
+                            <small *ngIf="sensorForm.get('tankSize')?.errors?.['min']">Value must be at least 0</small>
+                            <small *ngIf="sensorForm.get('tankSize')?.errors?.['max']">Value must not exceed 10000</small>
+                        </div>
+                    </div>
+                    <div class="relative flex items-center">
+                        <label for="otTH" class="block text-gray-700 text-base font-semibold w-1/2">Maximum Tank Threshold :</label>
+                        <input
+                            type="number"
+                            id="otTH"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="otTH"
+                            [ngClass]="{'input-error': sensorForm.get('otTH')?.invalid && sensorForm.get('otTH')?.touched}"> %
+                        <div *ngIf="sensorForm.get('otTH')?.invalid && sensorForm.get('otTH')?.touched" class="absolute left-60 top-full  text-red-500 text-sm font-semibold">
+                            <small *ngIf="sensorForm.get('otTH')?.errors?.['min']">Value must be at least 0</small>
+                            <small *ngIf="sensorForm.get('otTH')?.errors?.['max']">Value must not exceed 100</small>
+                        </div>
+                    </div>
+
+                    <!-- Lower Tank Threshold -->
+                    <div class="relative flex items-center">
+                        <label for="utTH" class="block text-gray-700 text-base font-semibold w-1/2">Minimum Tank Threshold :</label>
+                        <input
+                            type="number"
+                            id="utTH"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="utTH"
+                            [ngClass]="{'input-error': sensorForm.get('utTH')?.invalid && sensorForm.get('utTH')?.touched}"> %
+                        <div *ngIf="sensorForm.get('utTH')?.invalid && sensorForm.get('utTH')?.touched" class="absolute left-60 top-full  text-red-500 text-sm font-semibold">
+                            <small *ngIf="sensorForm.get('utTH')?.errors?.['min']">Value must be at least 0</small>
+                            <small *ngIf="sensorForm.get('utTH')?.errors?.['max']">Value must not exceed 100</small>
+                        </div>
+                    </div>
+
+                    
+                    <!-- <div class="flex items-center">
+                        <label for="tempslop" class="block text-gray-700 text-base font-semibold w-1/3">Temp Slop :</label>
+                        <input
+                            type="number"
+                            id="tempslop"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="tempslop"
+                        />
+                    </div>
+                    <div class="flex items-center">
+                        <label for="tempconst" class="block text-gray-700 text-base font-semibold w-1/3">Temp Const :</label>
+                        <input
+                            type="number"
+                            id="tempconst"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="tempconst"
+                        />
+                    </div>
+                    <div class="flex items-center">
+                        <label for="doslop" class="block text-gray-700 text-base font-semibold w-1/3">DO Slop :</label>
+                        <input
+                            type="number"
+                            id="doslop"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="doslop"
+                        />
+                    </div>
+                    <div class="flex items-center">
+                        <label for="doconst" class="block text-gray-700 text-base font-semibold w-1/3">DO Const :</label>
+                        <input
+                            type="number"
+                            id="doconst"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="doconst"
+                        />
+                    </div>
+
+                     <div class="flex items-center">
+                        <label for="phslop" class="block text-gray-700 text-base font-semibold w-1/3">pH Slop :</label>
+                        <input
+                            type="number"
+                            id="phslop"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="phslop"
+                        />
+                    </div>
+                    <div class="flex items-center">
+                        <label for="phconst" class="block text-gray-700 text-base font-semibold w-1/3">pH Const :</label>
+                        <input
+                            type="number"
+                            id="phconst"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="phconst"
+                        />
+                    </div> -->
+                     <!-- <div class="flex items-center">
+                        <label for="phslop" class="block text-gray-700 text-base font-semibold w-1/3">pH Slop :</label>
+                        <input
+                            type="number"
+                            id="phslop"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="phslop"
+                        />
+                    </div>
+                    <div class="flex items-center">
+                        <label for="phconst" class="block text-gray-700 text-base font-semibold w-1/3">pH Const :</label>
+                        <input
+                            type="number"
+                            id="phconst"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="phconst"
+                        />
+                    </div> -->
+
+                  
+                    <!-- Submit button -->
+                    <div class="flex items-center justify-center">
+                        <div class="w-1/3"></div> <!-- Empty space for alignment -->
+                        <input
+                            type="submit"
+                            class="submitbtn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-10 rounded-xl focus:outline-none focus:shadow-outline"
+                            value="Submit" 
+                            (click)="saveSensor()"
+                           
+                        />
+                    </div>
+                    <br>
+                    <hr class="border-gray-300 my-4">
+                    
+
+
+                    <div class="flex">
+                        <span class="text-lg font-semibold w-1/3 text-gray-700">Note :</span>
+                        <span class="text-lg font-normal">Enter Tank Size in mm <br>(eg. 1m = 1000mm) </span>
+                      </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

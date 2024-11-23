@@ -1,0 +1,74 @@
+<div class="container mx-auto">
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex-auto p-2 sm:p-10">
+            <!-- Title -->
+            <div class="title text-center mb-4">
+                <span class="heading text-3xl font-bold">SERVER SETTING</span>
+                <br>
+                <span class="subheading text-lg text-gray-600">Server Configuration Values</span>
+            </div>
+            <hr class="border-gray-300 my-4">
+            
+            <!-- Form -->
+            <form [formGroup]="serverForm" class="max-w-lg">
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Hostname -->
+                    <div class="flex items-center">
+                        <label for="serverIP" class="block text-gray-700 text-base font-semibold w-1/3">Server IP :</label>
+                        <input
+                            type="text"
+                            id="serverIP"
+                            placeholder="Enter  ServerIP"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="serverIP"
+                        />
+                    </div>
+
+                    <!-- Latitude -->
+                    <div class="flex items-center">
+                        <label for="port" class="block text-gray-700 text-base font-semibold w-1/3">Port :</label>
+                        <input
+                            type="text"
+                            id="port"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="port"
+                        />
+                    </div>
+
+                    <!-- Longitude -->
+                    <div class="flex items-center">
+                        <label for="serverURL" class="block text-gray-700 text-base font-semibold w-1/3">Server URL :</label>
+                        <input
+                            type="text"
+                            id="serverURL"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="serverURL"
+                        />
+                    </div>
+
+                    <!-- Site Name -->
+                    <div class="flex items-center">
+                        <label for="token" class="block text-gray-700 text-base font-semibold w-1/3">Token :</label>
+                        <input
+                            type="text"
+                            id="token"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="token"
+                        />
+                    </div>
+                    <!-- Submit button -->
+                    <div class="flex items-center justify-center">
+                        <div class="w-1/4"></div> <!-- Empty space for alignment -->
+                        <input
+                            type="submit"
+                            class="submitbtn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-10 rounded-xl focus:outline-none focus:shadow-outline"
+                            value="Submit" 
+                           
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

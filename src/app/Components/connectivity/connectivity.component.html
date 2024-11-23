@@ -1,0 +1,121 @@
+<div class="container mx-auto">
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex-auto p-2 sm:p-10">
+            <div class="title text-center mb-4">
+                <span class="heading text-3xl font-bold">Network SETTING</span>
+                <br>
+                <span class="subheading text-lg text-gray-600">Network Configuration Values</span>
+            </div>
+
+    <hr class="mb-4">
+
+    <!-- Buttons to select WiFi or Cellular -->
+    <div class="flex items-center mb-2">
+        <label for="enable_mqtt" class="block text-gray-700 text-base font-semibold w-1/6">Connectivity :</label>
+        <div class="mt-2 space-x-1">
+            <button (click)="selectWiFi()" [class.active]="selectedNetwork === 1" class="px-4 py-1 font-semibold text-gray-500 bg-green-50 rounded-lg " [ngClass]="{'bg-teal-600 text-white': selectedNetwork === 1}">WiFi</button>
+            <button (click)="select4G()" [class.active]="selectedNetwork === 0" class="px-5 py-1 font-semibold text-gray-500 bg-green-50 rounded-lg" [ngClass]="{'bg-teal-600 text-white': selectedNetwork === 0}">4G</button>
+        </div>
+    </div>
+
+    <!-- WiFi Form -->
+    <form *ngIf="selectedNetwork === 1" [formGroup]="wifiForm" (ngSubmit)="saveWiFiSettings()" class="max-w-2xl">
+        <div class="grid grid-cols-1 gap-2">
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Network SSID :</label>
+                <input type="text" formControlName="ssid"
+                class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                  placeholder="Enter Network SSID">
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Password :</label>
+                <input type="password" formControlName="password"
+                class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Password">
+            </div>
+
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">DHCP :</label>
+                <label class="switch relative inline-block w-12 h-6">
+                    <input type="checkbox" formControlName="dhcp"
+                    class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Static IP :</label>
+                <input type="text" formControlName="staticIP"
+                 class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Static IP">
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Gateway IP :</label>
+                <input type="text" formControlName="gatewayIP"
+                 class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Gateway IP">
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Subnet Mask :</label>
+                <input type="text" formControlName="subnetMask"
+                 class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Subnet Mask">
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Primary DNS :</label>
+                <input type="text" formControlName="pdns"
+                 class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Primary DNS">
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">Secondary DNS :</label>
+                <input type="text" formControlName="sdns"
+                 class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter Secondary DNS">
+            </div>
+
+            <div class="flex justify-center mt-4">
+                <button type="submit" class="bg-teal-500 text-white py-2 px-10 rounded-xl shadow hover:bg-teal-600">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Cellular Form -->
+    <form *ngIf="selectedNetwork === 0" [formGroup]="wifiForm" (ngSubmit)="saveWiFiSettings()" class="max-w-2xl">
+        <div class="grid grid-cols-1 gap-2">
+            <div class="flex items-center">
+                <label  class="block text-gray-700 text-base font-semibold w-1/4">Auto APN :</label>
+                <div class="flex items-center space-x-4">
+                    <label class="flex items-center">
+                        <input type="radio" formControlName="autoApn" [value]="0" class="mr-2"> Manual
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" formControlName="autoApn" [value]="1" class="mr-2"> Auto
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <label class="block text-gray-700 text-base font-semibold w-1/4">SIM 1 APN :</label>
+                <input type="text" formControlName="sim1Apn"
+                class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-1/2 focus:ring-teal-600 focus:border-teal-600"
+                 placeholder="Enter SIM 1 APN">
+            </div>
+
+           <div class="flex justify-center mt-4">
+                    <button type="submit" class="bg-teal-500 text-white py-2 px-10 rounded-xl shadow hover:bg-teal-600">Submit</button>
+               
+           </div>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+
+

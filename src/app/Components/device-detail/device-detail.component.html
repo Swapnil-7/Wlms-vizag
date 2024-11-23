@@ -1,0 +1,70 @@
+
+
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex-auto p-1 sm:p-10">
+      <div class="title mb-2 flex justify-center">
+        <span class="heading text-2xl font-bold">DEVICE STATUS</span>
+      </div>
+      <hr class="mb-5 border-gray-300" />
+  
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Manufacturer :</span>
+          <span class="text-lg font-normal">{{
+            deviceStatus?.Manufacturer
+          }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Device :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.Device }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Device ID :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.DeviceID }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">IMEI :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.IMEI }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">WiFi MAC :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.WiFiMac }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">SDK Version :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.SDKVersion }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Firmware Name :</span>
+          <span class="text-lg font-normal">{{
+            deviceStatus?.FirmwareName
+          }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Firmware Version :</span>
+          <span class="text-lg font-normal">{{
+            deviceStatus?.FirmwareVersion
+          }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Firmware Build Date :</span>
+          <span class="text-lg font-normal">{{
+            deviceStatus?.FirmwareBuildDate
+          }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">Network :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.Network }}</span>
+        </div>
+        <div class="flex">
+          <span class="text-lg font-semibold w-1/3 text-gray-700">WiFi IP :</span>
+          <span class="text-lg font-normal">{{ deviceStatus?.WiFiIP }}</span>
+          <!-- <div class="flex">
+              <span class="text-lg font-semibold w-1/3">Device Alias :</span>
+          </div> -->
+          <!-- <span class=" text-lg font-normal ">{{ generalConfig?.deviceAlias }}</span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,104 @@
+<div class="container mx-auto">
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex-auto p-2 sm:p-10">
+            <!-- Title -->
+            <div class="title text-center mb-4">
+                <span class="heading text-3xl font-bold">NODE CONFIGURATION</span>
+                <br>
+                <span class="subheading text-lg text-gray-600">Node Configuration Values</span>
+            </div>
+            <hr class="border-gray-300 my-4">
+            
+            <!-- Form -->
+            <form [formGroup]="loraForm" class="max-w-2xl">
+                <div class="grid grid-cols-1 gap-5">
+                    <!-- Hostname -->
+                    <div class="relative flex items-center">
+                        <label for="cDevId" class="block text-gray-700 text-base font-semibold w-1/2">Central Device UID :</label>
+                        <input
+                            type="text"
+                            id="cDevId"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="cDevId"
+                            maxlength="8"
+                            [ngClass]="{'input-error': loraForm.get('cDevId')?.invalid && loraForm.get('cDevId')?.touched}"
+                        />
+                        <div *ngIf="loraForm.get('cDevId')?.invalid && loraForm.get('cDevId')?.touched" class="absolute left-60 top-full  text-red-500 text-sm">
+                            <small *ngIf="loraForm.get('cDevId')?.errors?.['pattern']">Invalid Input (must be exactly 8 characters)</small>
+                        </div>
+                    </div>
+
+                    <!-- Upper Tank UID -->
+                    <div class="relative flex items-center">
+                        <label for="OTID" class="block text-gray-700 text-base font-semibold w-1/2">Upper Tank Device UID :</label>
+                        <input
+                            type="text"
+                            id="OTID"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="OTID"
+                            maxlength="8"
+                            [ngClass]="{'input-error': loraForm.get('OTID')?.invalid && loraForm.get('OTID')?.touched}">
+                        <div *ngIf="loraForm.get('OTID')?.invalid && loraForm.get('OTID')?.touched" class="absolute left-60 top-full  text-red-500 text-sm">
+                            <small *ngIf="loraForm.get('OTID')?.errors?.['pattern']">Invalid Input (must be exactly 8 characters)</small>
+                        </div>
+                    </div>
+
+                    <!-- Lower Tank UID -->
+                    <div class="relative flex items-center">
+                        <label for="UTID" class="block text-gray-700 text-base font-semibold w-1/2">Lower Tank Device UID :</label>
+                        <input
+                            type="text"
+                            id="UTID"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="UTID"
+                            maxlength="8"
+                            [ngClass]="{'input-error': loraForm.get('UTID')?.invalid && loraForm.get('UTID')?.touched}">
+                        <div *ngIf="loraForm.get('UTID')?.invalid && loraForm.get('UTID')?.touched" class="absolute left-60 top-full  text-red-500 text-sm">
+                            <small *ngIf="loraForm.get('UTID')?.errors?.['pattern']">Invalid Input (must be exactly 8 characters)</small>
+                        </div>
+                    </div>
+
+                    <!-- Upper Tank Threshold -->
+                    <div class="relative flex items-center">
+                        <label for="otTH" class="block text-gray-700 text-base font-semibold w-1/2">Upper Tank Threshold (Start):</label>
+                        <input
+                            type="number"
+                            id="otTH"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="otTH"
+                            [ngClass]="{'input-error': loraForm.get('otTH')?.invalid && loraForm.get('otTH')?.touched}"> %
+                        <div *ngIf="loraForm.get('otTH')?.invalid && loraForm.get('otTH')?.touched" class="absolute left-60 top-full  text-red-500 text-sm">
+                            <small *ngIf="loraForm.get('otTH')?.errors?.['min']">Value must be at least 0</small>
+                            <small *ngIf="loraForm.get('otTH')?.errors?.['max']">Value must not exceed 100</small>
+                        </div>
+                    </div>
+
+                    <!-- Lower Tank Threshold -->
+                    <div class="relative flex items-center">
+                        <label for="utTH" class="block text-gray-700 text-base font-semibold w-1/2">Lower Tank Threshold (Stop):</label>
+                        <input
+                            type="number"
+                            id="utTH"
+                            class="bg-gray-200 border-0 rounded-lg px-3 py-2 w-full focus:ring-teal-600 focus:border-teal-600"
+                            formControlName="utTH"
+                            [ngClass]="{'input-error': loraForm.get('utTH')?.invalid && loraForm.get('utTH')?.touched}"> %
+                        <div *ngIf="loraForm.get('utTH')?.invalid && loraForm.get('utTH')?.touched" class="absolute left-60 top-full  text-red-500 text-sm">
+                            <small *ngIf="loraForm.get('utTH')?.errors?.['min']">Value must be at least 0</small>
+                            <small *ngIf="loraForm.get('utTH')?.errors?.['max']">Value must not exceed 100</small>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="flex items-center justify-center">
+                        <div class="w-1/4"></div> <!-- Empty space for alignment -->
+                        <input
+                            type="submit"
+                            class="submitbtn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-10 rounded-xl focus:outline-none focus:shadow-outline"
+                            value="Submit" 
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
